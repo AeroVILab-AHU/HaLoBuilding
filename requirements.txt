@@ -1,0 +1,16 @@
+addict                              
+albumentations                
+antialiased-cnns                       
+mmcv-full
+mmengine                 
+numpy                   
+opencv-python            
+pillow                  
+pytorch-lightning       
+scikit-learn             
+scipy                  
+timm                     
+torch                  
+torchaudio               
+torchvision             
+tqdm                     
