@@ -156,7 +156,12 @@ class SFFM(nn.Module):
         attn2 = self.conv_spatial(attn1)
         B, C, H, W = x.shape
         fft_x = torch.fft.fft2(x, norm='ortho')
-        fft_x_low = fft_x[:, :, :H//4, :W//4].flatten(2)
+        fft_x = torch.fft.fftshift(fft_x)
+
+        h_center, w_center = H // 2, W // 2
+        h_radius, w_radius = H // 8, W // 8
+
+        fft_x_low = fft_x[:, :, h_center-h_radius:h_center+h_radius,w_center-w_radius:w_center+w_radius]
         fft_x_low_mean = torch.abs(fft_x_low).mean(dim=2)
         freq_weight = torch.sigmoid(self.dct_mlp(fft_x_low_mean)).view(B, C, 1, 1)
         attn1 = self.conv1(attn1)
