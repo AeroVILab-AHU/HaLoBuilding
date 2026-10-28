@@ -10,7 +10,7 @@ This is the official implementation of the paper:<br/>
 <p align="center"> 
 <img src="./fig.png" width=100% 
 class="center">
-<p align="center">  Illustration of the annotation pipeline for the HaLoBuilding dataset based on the Same-Scene Multitemporal Pairing strategy. The process consists of two stages: Stage 1 pairs clear reference images with adverse-weather counterparts. Stage 2 transfers high-quality labels from clear images, followed by rigorous manual refinement. The yellow dashed boxes highlight inconsistent regions caused by temporal gaps or visibility degradation, which are manually corrected to ensure high-fidelity, pixel-level alignment with the actually visible buildings.
+<p align="center">  The HaLoBuilding annotation workflow. In Stage 1, clear and degraded image pairs are constructed using Same-Scene Multitemporal Pairing. Stage 2 subsequently applies label transfer coupled with rigorous manual refinement. The yellow dashed boxes indicate temporal or visibility differences that were manually reviewed and corrected to improve pixel-level alignment.
 </p> 
 
 ----
