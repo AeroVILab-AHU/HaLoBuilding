@@ -132,10 +132,8 @@ class GMGM(nn.Module):
         guide_feat_2 = F.interpolate(guide_feat_2, size=(H2, W2), mode='bilinear', align_corners=False)
         guide_feat_3 = F.interpolate(guide_feat_3, size=(H3, W3), mode='bilinear', align_corners=False)
         
-        return guide_feat_1, guide_feat_2, guide_feat_3
-    
-
-
+        return guide_feat_1, guide_feat_2, guide_feat_3    
+      
 class SFFM(nn.Module):
     def __init__(self, dim):
         super().__init__()
@@ -156,16 +154,13 @@ class SFFM(nn.Module):
         attn2 = self.conv_spatial(attn1)
         B, C, H, W = x.shape
         fft_x = torch.fft.fft2(x, norm='ortho')
-        fft_x = torch.fft.fftshift(fft_x)
-
-        h_center, w_center = H // 2, W // 2
-        h_radius, w_radius = H // 8, W // 8
-
-        fft_x_low = fft_x[:, :, h_center-h_radius:h_center+h_radius,w_center-w_radius:w_center+w_radius]
+        fft_x_low = fft_x[:, :, :H//4, :W//4].flatten(2)
         fft_x_low_mean = torch.abs(fft_x_low).mean(dim=2)
         freq_weight = torch.sigmoid(self.dct_mlp(fft_x_low_mean)).view(B, C, 1, 1)
+
         attn1 = self.conv1(attn1)
         attn2 = self.conv2(attn2)
+
         attn = torch.cat([attn1, attn2], dim=1)
         avg_attn = torch.mean(attn, dim=1, keepdim=True)
         max_attn, _ = torch.max(attn, dim=1, keepdim=True)
