@@ -3,7 +3,7 @@
 This is the official implementation of the paper:<br/>
 > **Building Extraction from Remote Sensing Imagery under Adverse Weather: Benchmark and Baseline**
 >
-> *Feifei Sang†, Wei Lu†, Hongruixuan Chen,Ye Wang, Si-Bao Chen∗, Jin Tanga and Bin Luoa* 
+> *Feifei Sang†, Wei Lu†, Hongruixuan Chen,Ye Wang, Si-Bao Chen∗, Jin Tanga and Bin Luo
 
 ----
 
